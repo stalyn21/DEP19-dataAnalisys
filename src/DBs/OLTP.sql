@@ -5,19 +5,19 @@ USE OLTP_Credit_Card_Transactions_Fraud_Detection;
 
 -- Creación de la tabla para géneros
 CREATE TABLE IF NOT EXISTS Cliente_genero (
-    gender_id INT PRIMARY KEY,
+    gender_id INT AUTO_INCREMENT PRIMARY KEY,
     gender VARCHAR(10) NOT NULL
 );
 
 -- Creación de la tabla para estados
 CREATE TABLE IF NOT EXISTS State (
-    state_id INT PRIMARY KEY,
+    state_id INT AUTO_INCREMENT PRIMARY KEY,
     state_name VARCHAR(100) NOT NULL
 );
 
 -- Creación de la tabla para ciudades
 CREATE TABLE IF NOT EXISTS Ciudad (
-    city_id INT PRIMARY KEY,
+    city_id INT AUTO_INCREMENT PRIMARY KEY,
     city_name VARCHAR(100) NOT NULL,
     state_id INT,
     FOREIGN KEY (state_id) REFERENCES State(state_id)
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS Ciudad (
 
 -- Creación de la tabla para direcciones
 CREATE TABLE IF NOT EXISTS Address (
-    address_id INT PRIMARY KEY,
+    address_id INT AUTO_INCREMENT PRIMARY KEY,
     street VARCHAR(255) NOT NULL,
     city_id INT,
     zip VARCHAR(20),
@@ -48,20 +48,20 @@ CREATE TABLE IF NOT EXISTS Cliente (
 
 -- Creación de la tabla para ubicaciones de comercio
 CREATE TABLE IF NOT EXISTS comercio_loc (
-    merch_loc_id INT PRIMARY KEY,
+    merch_loc_id INT AUTO_INCREMENT PRIMARY KEY,
     merch_lat DECIMAL(9,6),
     merch_long DECIMAL(9,6)
 );
 
 -- Creación de la tabla para categorías de comercio
 CREATE TABLE IF NOT EXISTS comercio_cat (
-    category_id INT PRIMARY KEY,
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
     category VARCHAR(100)
 );
 
 -- Creación de la tabla para comercio
 CREATE TABLE IF NOT EXISTS Comercio (
-    merchant_id INT PRIMARY KEY,
+    merchant_id INT AUTO_INCREMENT PRIMARY KEY,
     merchant_name VARCHAR(255),
     category_id INT,
     merch_loc_id INT,
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS Transacciones (
 
 -- Creación de la tabla para empleo
 CREATE TABLE IF NOT EXISTS Empleo (
-    job_id INT PRIMARY KEY,
+    job_id INT AUTO_INCREMENT PRIMARY KEY,
     cc_num BIGINT,
     job_description VARCHAR(255),
     FOREIGN KEY (cc_num) REFERENCES Cliente(cc_num)

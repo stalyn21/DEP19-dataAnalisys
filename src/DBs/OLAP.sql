@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS DimTiempo (
 
 -- Creación de la tabla de dimensión Cliente
 CREATE TABLE IF NOT EXISTS DimCliente (
-    cliente_id INT PRIMARY KEY AUTO_INCREMENT,
+    cc_num BIGINT PRIMARY KEY,
     first VARCHAR(100),
     last VARCHAR(100),
     dob DATE,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS DimEmpleo (
 -- Creación de la tabla de hechos Transacciones
 CREATE TABLE IF NOT EXISTS HechosTransacciones (
     transaccion_id INT PRIMARY KEY AUTO_INCREMENT,
-    cliente_id INT,
+    cc_num BIGINT,
     direccion_id INT,
     tiempo_id INT,
     comercio_id INT,
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS HechosTransacciones (
     amt DECIMAL(10,2),
     is_fraud BIT,
     unix_time BIGINT,
-    FOREIGN KEY (cliente_id) REFERENCES DimCliente(cliente_id),
+    FOREIGN KEY (cc_num) REFERENCES DimCliente(cc_num),
     FOREIGN KEY (direccion_id) REFERENCES DimDireccion(direccion_id),
     FOREIGN KEY (tiempo_id) REFERENCES DimTiempo(tiempo_id),
     FOREIGN KEY (comercio_id) REFERENCES DimComercio(comercio_id),

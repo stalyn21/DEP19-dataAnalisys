@@ -13,3 +13,12 @@ services:
       - ./DBs/OLAP.sql:/docker-entrypoint-initdb.d/OLAP.sql  # Montar el script OLAP
       - ./DBs/OLTP.sql:/docker-entrypoint-initdb.d/OLTP.sql  # Montar el script OLTP
     restart: always  # El contenedor se reiniciará automáticamente si se detiene
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  mysql_data:
+    driver: local
